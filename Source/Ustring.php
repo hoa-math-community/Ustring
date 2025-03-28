@@ -158,7 +158,7 @@ class Ustring implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Construct a UTF-8 string.
      */
-    public function __construct(string $string = null)
+    public function __construct(?string $string = null)
     {
         if (null !== $string) {
             $this->append($string);
@@ -281,7 +281,7 @@ class Ustring implements \ArrayAccess, \Countable, \IteratorAggregate
      */
     public function match(
         string $pattern,
-        array &$matches = null,
+        ?array &$matches = null,
         int $flags      = 0,
         int $offset     = 0,
         bool $global    = false
@@ -440,7 +440,7 @@ class Ustring implements \ArrayAccess, \Countable, \IteratorAggregate
      * Transliterate the string into another.
      * See self::getTransliterator for more information.
      */
-    public function transliterate(string $identifier, int $start = 0, int $end = null): self
+    public function transliterate(string $identifier, int $start = 0, ?int $end = null): self
     {
         if (null === $transliterator = static::getTransliterator($identifier)) {
             throw new Exception(
@@ -560,7 +560,7 @@ class Ustring implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Reduce the strings.
      */
-    public function reduce(int $start, int $length = null): self
+    public function reduce(int $start, ?int $length = null): self
     {
         $this->_string = mb_substr($this->_string, $start, $length);
 
